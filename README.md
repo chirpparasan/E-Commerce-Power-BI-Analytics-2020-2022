@@ -1,130 +1,185 @@
 # E-Commerce-Power-BI-Analytics-2020-2022-
 
-🚀 Project Overview
+# 📊 E-Commerce Business Intelligence Dashboard System (2020–2022)
 
-This project analyzes e-commerce data from 2020–2022, covering Orders, Customers, Products, Categories, Subcategories, and Returns.
-The goal is to build an end-to-end BI system that helps understand sales trends, customer behavior, product performance, profitability, and regional patterns.
+## 📌 **Project Overview**
 
-🎯 Objectives
+This project is an end-to-end **Business Intelligence solution** built using **Power BI**. It analyzes multi-year e-commerce data (2020–2022) covering customers, orders, products, categories, subcategories, and returns. The goal is to deliver actionable insights into sales performance, customer behavior, product profitability, and geographic trends.
 
-Integrate and clean multi-year sales data.
+---
 
-Build a star-schema data model using PK–FK relationships.
+## 🎯 **Objectives**
 
-Create DAX measures for analytical insights.
+* Integrate and clean multi-year sales datasets.
+* Create a robust star-schema data model using PK–FK relationships.
+* Build DAX measures for advanced calculations.
+* Develop interactive dashboards for business insights.
+* Enable real-time decision-making through visual analytics.
 
-Design multiple interactive dashboards in Power BI.
+---
 
-Generate actionable insights for business decision-making.
-
-📂 Dataset Structure
+## 📂 **Dataset Details**
 
 The project uses the following tables:
 
-Customers — customer details
+* **Customers** – Customer information & demographics
+* **Orders** – Order-level transaction data
+* **Sales (2020–2022)** – Multi-year sales merged into one dataset
+* **Products** – Product details and pricing
+* **Categories & Subcategories** – Product classification
+* **Returns** – Returned orders with return quantity
+* **Date Table** (Created for DAX time intelligence)
 
-Orders — transaction information
+---
 
-Sales (2020–2022) — merged sales dataset
+## 🔄 **ETL Workflow**
 
-Products — product descriptions & pricing
+### **1. Extract**
 
-Categories & Subcategories — classification hierarchy
+* Imported raw tables into Power BI.
+* Combined yearly sales files into a single dataset.
 
-Returns — returned order records
+### **2. Transform**
 
-Date Table — for DAX time intelligence
+* Removed duplicates & missing values
+* Standardized product/category mapping
+* Created calculated columns for Profit, Return Flag, etc.
+* Ensured consistent data types and formatting
 
-🛠 ETL Workflow
-1️⃣ Extract
+### **3. Load**
 
-Imported all raw tables into Power BI
+* Loaded all cleaned tables into Power BI model view
 
-Merged multi-year sales files into one dataset
+---
 
-2️⃣ Transform
+## 🧩 **Data Modeling**
 
-Cleaned missing values, duplicates
+Below is the actual data model extracted from the Power BI Model View:
 
-Standardized product/category mapping
+### **Tables Included in the Model**
 
-Created calculated columns (Profit, Return Flag, etc.)
+* **SALES 2020–2022 (Fact Table)**
+  Contains: CustomerKey, OrderDate, OrderNumber, OrderQuantity, ProductKey, QuantityType, Retail Price
 
-Formatted and validated all data types
+* **Customer Lookup 2 (Dimension)**
+  Contains: AnnualIncome, BirthDate, BirthYear, Child, Customer Priority, CustomerCity, EducationCategory, EmailAddress
 
-3️⃣ Load
+* **Calendar Lookup (Dimension)**
+  Contains: Date
 
-Loaded cleaned tables into the Power BI model
+* **Product Lookup (Dimension)**
+  Contains: ModelName, PriceRanges, ProductColor, ProductDescription, ProductKey, ProductLine, ProductName, ProductSize
 
-🧮 Key DAX Measures
+* **Product Categories Lookup (Dimension)**
+  Contains: CategoryName, ProductCategoryKey
 
-Total Sales
+* **Product Subcategories Lookup (Dimension)**
+  Contains: ProductCategoryKey, ProductSubcategoryKey, SubcategoryName
 
-Total Customers
+* **Returns Data (Fact Table)**
+  Contains: ProductKey, ReturnDate, ReturnQuantity, TerritoryKey
 
-Profit %
+* **Territory Lookup (Dimension)**
+  Contains: Continent, Country, Region, SalesTerritoryKey
 
-Return %
+* **Customer Matric Selection (Helper Table)**
+  Used for dynamic metrics and slicer-based analysis.
 
-YOY Growth
+* **Measure Table**
+  Contains all core DAX measures.
 
-Sales by Category/Subcategory
+### **Relationship Structure (PK–FK)**
 
-Average Order Value (AOV)
+* SALES 2020–2022[CustomerKey] → Customer Lookup 2[CustomerKey]
+* SALES 2020–2022[ProductKey] → Product Lookup[ProductKey]
+* Product Lookup[ProductCategoryKey] → Product Categories Lookup[ProductCategoryKey]
+* Product Lookup[ProductSubcategoryKey] → Product Subcategories Lookup[ProductSubcategoryKey]
+* SALES 2020–2022[OrderDate] → Calendar Lookup[Date]
+* Returns Data[ProductKey] → Product Lookup[ProductKey]
+* Returns Data[TerritoryKey] → Territory Lookup[TerritoryKey]
 
-Returning Customer Rate
+This model supports a clean star-schema structure and improves reporting performance.
 
-📊 Dashboards Included
-📌 1. Index Dashboard
+---**
+A star schema model was designed:
 
-Navigation to all dashboards
+* **Fact Table:** Fact_Sales
+* **Dimension Tables:** Customers, Products, Categories, Subcategories, Date
 
-Quick project overview
+### **Relationships (PK–FK)**
 
-📊 2. Executive Dashboard
+* CustomerID → Dim_Customer
+* ProductID → Dim_Product
+* CategoryID → Dim_Category
+* SubCategoryID → Dim_Subcategory
+* OrderDate → Date Table
 
-KPIs: Sales, Profit %, Return %, Customers
+This ensures efficient DAX performance and cleaner reporting.
 
-YOY trend analysis
+---
 
-Category revenue share
+## 📐 **Key DAX Measures**
 
-🗺 3. Map Dashboard
+Some of the major measures used:
 
-Region-wise sales
+* **Total Sales**
+* **Total Customers**
+* **Profit %**
+* **Return %**
+* **Year-over-Year Growth**
+* **Sales by Category/Subcategory**
+* **Average Order Value (AOV)**
 
-Return % by area
+---
 
-👥 4. Customer Dashboard
+## 📊 **Dashboards Included**
 
-New vs Returning customers
+### **1. Index Dashboard**
 
-Revenue by customer profile
+* Navigation panel to access all dashboards
+* Quick project overview
 
-Top 10 customers
+### **2. Executive Dashboard**
 
-📦 5. Product Dashboard
+* KPIs: Total Sales, Profit %, Return %, Total Customers
+* Sales trend visuals
+* Category-level performance comparison
 
-Best & least selling products
+### **3. Map Dashboard**
 
-Profit %, Return %
+* State/region-wise sales & return distribution
+* High-performing vs low-performing regions
 
-Category & subcategory breakdown
+### **4. Customer Dashboard**
 
-🔍 Key Insights
+* New vs returning customers
+* Customer segmentation
+* Top customers by revenue
 
-Identified high-performing and low-performing regions
+### **5. Product Dashboard**
 
-Found categories with highest sales & highest return rates
+* Best & least performing products
+* Profit %, Return %, and revenue contribution
+* Category & subcategory breakdown
 
-Detected product lines with best profitability
+---
 
-Discovered strong customer retention patterns
+## 🔍 **Key Insights Generated**
 
-Understood seasonal demand cycles
+* Identified top-performing regions & sales hotspots
+* Found high-return product categories
+* Determined most profitable product lines
+* Recognized customer buying patterns & retention rates
+* Understood category-wise contribution to overall revenue
+
+---
+
+## 🛠 **Tech Stack Used**
+
+* **Power BI** – Data model, DAX, dashboards
+* **Excel** – Initial preprocessing
+* **Power Query** – ETL operations
+
+---
 
 
-
-Product Dashboard
-
-Index Dashboard
