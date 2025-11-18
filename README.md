@@ -56,38 +56,6 @@ Formatted and validated all data types
 
 Loaded cleaned tables into the Power BI model
 
-📐 Data Modeling
-
-Designed a Star Schema Model consisting of:
-
-Fact Table
-
-Fact_Sales
-
-Dimension Tables
-
-Dim_Customer
-
-Dim_Product
-
-Dim_Category
-
-Dim_Subcategory
-
-Dim_Date
-
-Relationships
-
-CustomerID → Customers
-
-ProductID → Products
-
-CategoryID → Categories
-
-SubCategoryID → Subcategories
-
-OrderDate → Date Table
-
 🧮 Key DAX Measures
 
 Total Sales
