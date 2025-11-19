@@ -11,7 +11,7 @@ This project is an end-to-end **Business Intelligence solution** built using **P
 ## 🎯 **Objectives**
 
 * Integrate and clean multi-year sales datasets.
-* Create a robust star-schema data model using PK–FK relationships.
+* Create a robust data model using PK–FK relationships.
 * Build DAX measures for advanced calculations.
 * Develop interactive dashboards for business insights.
 * Enable real-time decision-making through visual analytics.
